@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/jsx/Header';
 import Home from './components/jsx/Home'; 
-import Category from './components/jsx/Category'; 
-import Contact from './components/jsx/Contact';  
+import PostDetail from './components/jsx/PostDetail'; // Import the PostDetail component
 
 const App = () => {
+  const footerRef = useRef(null); // Create a reference for the footer
+
   return (
     <Router>
-      <Header />
+      <Header footerRef={footerRef} /> {/* Pass the footerRef to Header */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryName" element={<Category />} />
-        <Route path="#contact" element={<Contact />} />
+        <Route path="/post/:postId" element={<PostDetail />} /> {/* New Route for Full Post */}
       </Routes>
+      <footer ref={footerRef} className="bg-black text-white">
+        {/* Footer Content */}
+      </footer>
     </Router>
   );
-}
+};
 
 export default App;
