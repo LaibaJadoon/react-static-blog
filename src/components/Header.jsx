@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 
 const Header = ({ footerRef }) => {
   // Function to handle the scroll to the footer
@@ -47,7 +47,7 @@ const Header = ({ footerRef }) => {
         {/* Categories Dropdown (non-functional items) */}
         <div className="relative group">
           <button className="hover:text-[#E8BA00]">Categories</button>
-          <div className="dropdown-content hidden absolute bg-white text-black shadow-md rounded w-48 group-hover:block z-10">
+          <div className=" hidden absolute bg-white text-black shadow-md rounded w-48 group-hover:block z-10">
             <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Tech</div>
             <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Design</div>
             <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Artificial Intelligence</div>

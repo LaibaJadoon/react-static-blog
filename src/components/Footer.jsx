@@ -1,8 +1,8 @@
-import React from "react";
-
-const Footer = () => {
+import React, { forwardRef } from "react";
+// Receives a reference so the header can scroll to it
+const Footer = forwardRef((props, ref) => {
   return (
-    <div className="bg-black text-white py-2 mt-4"> {/* Reduced padding and margin-top */}
+    <div ref={ref} className="bg-black text-white py-2 mt-4">
       <div className="flex justify-center space-x-6">
         <a
           href="https://www.facebook.com"
@@ -37,11 +37,11 @@ const Footer = () => {
           GitHub
         </a>
       </div>
-      <div className="text-center text-xs mt-2"> {/* Reduced margin-top */}
+      <div className="text-center text-xs mt-2"> 
         <p>© 2025 Laiba Jadoon. All Rights Reserved</p>
       </div>
     </div>
   );
-};
+});
 
 export default Footer;
