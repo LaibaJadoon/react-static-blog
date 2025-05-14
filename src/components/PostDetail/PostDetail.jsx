@@ -8,7 +8,7 @@ const PostDetail = () => {
   }, []);
 
   return (
-<div className="flex flex-col md:flex-row justify-center w-full mt-8">
+<div className="flex flex-col md:flex-row justify-center px-20 gap-x-8 w-full mt-8">
       {/* PostMain: wider and centered on small screens */}
       <PostMain className="w-[95vw] md:w-[90vw] lg:w-[55vw] mx-auto md:mx-0" />
 

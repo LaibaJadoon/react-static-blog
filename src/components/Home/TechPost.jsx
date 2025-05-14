@@ -27,10 +27,10 @@ const TechPost = () => {
 
         {/* Description (2 lines max) */}
         <p className="text-white mb-3 max-w-[70%] line-clamp-2 text-sm">
-          Artificial intelligence is revolutionizing the tech industry. From self-driving cars to AI assistants, the future looks promising. Discover how AI is shaping the next generation of technology...
+          Artificial intelligence is revolutionizing the tech industry. From self-driving cars to AI assistants, the future looks promising. Discover how AI is shaping the next generation of technology... 
         </p>
 
-        {/* Read More Button (smaller) */}
+        {/* Read More Button  */}
         <Link
           to="/post/ai-future"
           className="inline-block bg-[#E8BA00] text-black text-sm py-1 px-3 rounded-full hover:bg-yellow-400"
