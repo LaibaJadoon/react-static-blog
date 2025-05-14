@@ -26,16 +26,43 @@ const PostSidebar = () => {
     },
   ];
 
-  return (
-    <div className="w-[25vw]">
-      <div className="bg-gray-100 p-4 rounded shadow">
-        <h4 className="text-lg font-semibold mb-4 text-gray-800">Related Blogs</h4>
+ return (
+  <div className="w-full md:w-[25vw]">
+    <div className="bg-gray-100 p-4 rounded shadow">
+      <h4 className="text-lg font-semibold mb-4 text-gray-800">Related Blogs</h4>
+
+      {/* For medium+ screens: vertical layout */}
+      <div className="hidden md:block">
         {relatedPosts.map((post) => (
           <RelatedPostCard key={post.id} image={post.image} title={post.title} />
         ))}
       </div>
+
+      {/* For small screens: horizontal scrollable row */}
+<div className="flex md:hidden overflow-x-auto space-x-4">
+  {relatedPosts.map((post) => (
+    <div
+      key={post.id}
+      className="min-w-[40vw] flex-shrink-0 bg-white rounded-lg shadow p-2"
+    >
+      <img
+        src={post.image}
+        alt={post.title}
+        className="w-full h-24 object-cover rounded"
+      />
+      <a
+        href="#"
+        className="block text-sm mt-2 font-semibold text-blue-600 hover:text-blue-800"
+      >
+        {post.title}
+      </a>
     </div>
-  );
+  ))}
+</div>
+    </div>
+  </div>
+);
+
 };
 
 export default PostSidebar;

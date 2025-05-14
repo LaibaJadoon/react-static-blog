@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaSearch, FaBars } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
 const Header = ({ footerRef }) => {
-  // Function to handle the scroll to the footer
+  // manage the state of the mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const scrollToFooter = () => {
-    footerRef.current.scrollIntoView({ behavior: 'smooth' });
+    footerRef.current.scrollIntoView({ behavior: "smooth" });
+    setIsMenuOpen(false);
   };
 
   return (
-    <header className="bg-[rgb(5,5,5)] px-4 py-2 flex items-center justify-between h-16">
+    <header className="bg-[rgb(5,5,5)] px-4 py-2 flex items-center justify-between h-16 relative">
       {/* Logo */}
       <div className="flex items-center">
         <Link to="/">
@@ -21,8 +25,8 @@ const Header = ({ footerRef }) => {
         </Link>
       </div>
 
-      {/* Search Bar */}
-      <div className="flex justify-center w-1/2">
+      {/* Search bar for large devices */}
+      <div className="hidden sm:flex justify-center w-1/2 max-w-md">
         <form className="flex items-center w-full border border-gray-300 rounded-full overflow-hidden bg-white">
           <input
             type="text"
@@ -38,31 +42,74 @@ const Header = ({ footerRef }) => {
         </form>
       </div>
 
-      {/* Navigation Links */}
-      <nav className="flex space-x-6 text-white">
+      {/* Nav links for medium and large screens */}
+      <nav className="hidden sm:flex space-x-6 text-white">
         <Link to="/" className="hover:text-[#E8BA00]">
           Home
         </Link>
-
-        {/* Categories Dropdown (non-functional items) */}
         <div className="relative group">
           <button className="hover:text-[#E8BA00]">Categories</button>
-          <div className=" hidden absolute bg-white text-black shadow-md rounded w-48 group-hover:block z-10">
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Tech</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Design</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Artificial Intelligence</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Innovation</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Cloud</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Technology</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Entrepreneurship</div>
-            <div className="block px-4 py-2 hover:bg-gray-200 cursor-default">Business</div>
+          <div className="dropdown-content hidden absolute bg-white text-black shadow-md rounded w-48 group-hover:block z-10">
+            {[
+              "Tech",
+              "Design",
+              "Artificial Intelligence",
+              "Innovation",
+              "Cloud",
+              "Technology",
+              "Entrepreneurship",
+              "Business",
+            ].map((category, index) => (
+              <div
+                key={index}
+                className="block px-4 py-2 hover:bg-gray-200 cursor-default"
+              >
+                {category}
+              </div>
+            ))}
           </div>
         </div>
-
-        <button onClick={scrollToFooter} className="hover:text-[#E8BA00]">
+        <button
+          onClick={scrollToFooter}
+          className="hover:text-[#E8BA00]"
+        >
           Contact Us
         </button>
       </nav>
+
+      {/* Hamburger icon on small screens */}
+      <div className="sm:hidden">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-white text-xl"
+        >
+          <FaBars />
+        </button>
+      </div>
+
+      {/* Mobile menu dropdown */}
+      {isMenuOpen && (
+        <div className="absolute top-16 right-4 bg-white text-black shadow-lg rounded-lg py-2 px-4 z-50 sm:hidden">
+          <Link
+            to="/"
+            onClick={() => setIsMenuOpen(false)}
+            className="block py-2 hover:text-[#E8BA00]"
+          >
+            Home
+          </Link>
+          <div className="py-2">Categories</div>
+          <button
+            onClick={scrollToFooter}
+            className="block py-2 hover:text-[#E8BA00]"
+          >
+            Contact Us
+          </button>
+          <button className="block py-2 text-left">
+            <FaSearch className="inline-block mr-2" />
+            Search
+          </button>
+        </div>
+      )}
     </header>
   );
 };

@@ -18,7 +18,7 @@ In conclusion, artificial intelligence is a transformative technology that holds
   };
 
   return (
-    <div className="w-[60vw] border border-gray-300 rounded-lg p-6 mr-6">
+<div className="w-full border border-gray-300 rounded-lg p-6">
       {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-4">
         {post.tags.map((tag, index) => (
